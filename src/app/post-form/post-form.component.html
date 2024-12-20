@@ -1,0 +1,26 @@
+<h1>Add New Post</h1>
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label>Title:</label>
+        <input formControlName="title" />
+        <div *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched">
+          Title is required and must be less than 25 characters.
+        </div>
+      </div>
+      <div>
+        <label>Author:</label>
+        <input formControlName="author" />
+      </div>
+      <div>
+        <label>Content:</label>
+        <textarea formControlName="content"></textarea>
+      </div>
+      <div>
+        <label>Date:</label>
+        <input formControlName="date" />
+        <div *ngIf="postForm.get('date')?.invalid && postForm.get('date')?.touched">
+          Enter a valid date in the format YYYY-MM-DD.
+        </div>
+      </div>
+      <button type="submit" [disabled]="postForm.invalid">Submit</button>
+    </form>
